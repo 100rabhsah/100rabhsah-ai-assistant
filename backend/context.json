@@ -1,59 +1,31 @@
 {
-    "name": "Sourabh Sah",
-    "tagline": "An AI-driven mind with a builder's spirit.",
-    "bio": "Sourabh Sah is an M.Tech student in Computer Science and Engineering (Data Science & AI) with a relentless drive to excel in Python, machine learning, and artificial intelligence. He's focused on mastering DSA and building powerful, meaningful projects that can leave an impact.",
-    "goals": [
-      "Crack top-tier placements with strong DSA and ML fundamentals",
-      "Build innovative AI-powered applications",
-      "Develop a robust GitHub portfolio with real-world projects",
-      "Stay ahead of the curve in emerging AI/ML trends"
-    ],
-    "skills": [
-      "Python",
-      "Machine Learning",
-      "Data Science",
-      "AI",
-      "Streamlit",
-      "FastAPI",
-      "React",
-      "Docker",
-      "Git/GitHub"
-    ],
-    "projects": [
-      {
-        "name": "Mamba Chatbot",
-        "description": "A lightweight AI chatbot powered by Mamba-based LLM, served via FastAPI and visualized using Streamlit. Includes chat history, Docker deployment, and Gemma fallback integration.",
-        "link": "https://github.com/100rabhsah/mamba-chatbot",
-        "technologies": ["FastAPI", "Streamlit", "LLM", "Docker"]
-      },
-      {
-        "name": "Portfolio Bot",
-        "description": "An AI assistant embedded in Sourabh’s portfolio that answers questions about his journey, skills, and philosophy using limited context.",
-        "link": "https://github.com/yourname/portfolio-bot",
-        "technologies": ["React", "FastAPI", "OpenRouter", "Gemma"]
-      }
-    ],
-    "philosophy": [
-      "Learn deeply, build boldly.",
-      "Fail fast, learn faster.",
-      "Focus on fundamentals — everything else builds on top.",
-      "Discipline beats motivation."
-    ],
-    "values": [
-      "Consistency",
-      "Curiosity",
-      "Practical learning",
-      "Clean, impactful code"
-    ],
-    "limitations": [
-      "This assistant cannot guess or predict future decisions.",
-      "It won't discuss private, speculative, or off-topic questions.",
-      "It only knows what Sourabh has shared in his public knowledge base."
-    ],
-    "contact": {
-      "github": "https://github.com/100rabhsah",
-      "linkedin": "https://linkedin.com/in/your-profile",
-      "email": "your.email@example.com"
-    }
-  }
-  
+  "background": [
+    "Sourabh Sah is an M.Tech student specializing in Data Science and Artificial Intelligence.",
+    "He is passionate about Python programming, machine learning, and building intelligent applications.",
+    "Sourabh consistently works towards excelling in problem-solving, quantitative aptitude, and software development skills.",
+    "He documents his learning journey publicly and actively mentors peers through social platforms and GitHub."
+  ],
+  "skills": [
+    "Sourabh is skilled in Python, FastAPI, React, Streamlit, SQL, and data visualization tools.",
+    "He is comfortable with Linux environments and regularly uses tools like Git, Docker, and Jupyter Notebooks.",
+    "He has hands-on experience with machine learning algorithms such as KNN, SVM, Naive Bayes, Linear Regression, and Decision Trees.",
+    "Sourabh believes in clean, readable code and follows best practices for full-stack development."
+  ],
+  "projects": [
+    "Sourabh built a personalized AI assistant powered by Gemma and Gemini models, integrated via FastAPI and Streamlit, styled with Tailwind CSS, and deployed using Docker and Colab.",
+    "His chatbot includes features like context injection, chat history with timestamps stored in JSON, and frontend/backend integration.",
+    "He is also building an AI legal assistant tailored to Indian law, focused on delivering context-specific legal guidance using LLMs.",
+    "He contributed to an IPL analytics project using Python, Pandas, and Matplotlib to generate meaningful cricket insights.",
+    "His portfolio website is built using React and Tailwind, and features an AI assistant that can answer questions about his journey and projects.",
+    "All his projects are pushed to GitHub with clean commit histories and README documentation."
+  ],
+  "preparation": [
+    "He is preparing for placements through a structured roadmap of DSA patterns, solving problems from NeetCode and LeetCode.",
+    "Sourabh is committed to the GFG 160 DSA Challenge, solving one problem per day and sharing his progress using #gfg160 and #geekstreak2025 on LinkedIn and X.",
+    "His focus includes mastering Dynamic Programming, Greedy Algorithms, and system design for upcoming placement competitions like Infosys Hackathons."
+  ],
+  "philosophy": [
+    "Sourabh focuses on building scalable and maintainable software solutions that solve real-world problems.",
+    "He values continuous learning, community contribution, and solving impactful problems through tech."
+  ]
+}

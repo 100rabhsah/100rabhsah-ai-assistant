@@ -20,10 +20,10 @@ with open("context.json", "r") as file:
 # Initialize FastAPI app
 app = FastAPI()
 
-# ✅ Add CORS middleware immediately after app init
+# Add CORS middleware for frontend access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (okay for dev, tighten for prod)
+    allow_origins=["*"],  # You can restrict this to frontend domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,22 +32,25 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     query: str
 
-# Define system prompt
+# Define strict system prompt
 SYSTEM_PROMPT = (
-    "You are Sourabh’s AI assistant. You can only answer questions about his professional path, "
-    "projects, values, and personal growth based on documented context. "
-    "You cannot share private info, speculate, or go beyond that scope."
+    "You are Sourabh Sah’s personal AI assistant. You can ONLY answer questions about Sourabh Sah — his background, skills, projects, philosophy, achievements, and values. "
+    "All of this information is loaded from the provided context. "
+    "You MUST NOT answer anything about other people, celebrities, or give opinions not grounded in this context. "
+    "If a question is outside your knowledge, respond with: "
+    "\"Sorry, I can only talk about Sourabh Sah based on provided context.\""
 )
 
-BASE_URL = "https://router.requesty.ai/v1"  # Corrected base URL for Requestly
+BASE_URL = "https://router.requesty.ai/v1"
 
 @app.post("/chat")
 async def chat_endpoint(payload: ChatRequest):
-    user_query = payload.query
+    user_query = payload.query.strip()
 
-    # Format the messages for the API request
-    messages = [
-        {"role": "system", "content": SYSTEM_PROMPT},
+    # Build messages for context injection
+    context_messages = [{"role": "assistant", "content": entry} for entry in context]
+
+    messages = [{"role": "system", "content": SYSTEM_PROMPT}] + context_messages + [
         {"role": "user", "content": user_query}
     ]
 
@@ -56,32 +59,25 @@ async def chat_endpoint(payload: ChatRequest):
         "Content-Type": "application/json"
     }
 
-    # Requestly (OpenRouter) API URL
-    url = f"{BASE_URL}/chat/completions"
-    
     data = {
         "model": "google/gemini-2.0-flash-exp",
         "messages": messages
     }
 
     try:
-        # Make the API request to Requestly
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(f"{BASE_URL}/chat/completions", json=data, headers=headers)
 
         if response.status_code != 200:
-            # Log the full error response
             print(f"Error response from API: {response.text}")
             raise HTTPException(status_code=response.status_code, detail=f"Requestly API error: {response.text}")
 
-        # Extract and return the response from the assistant
         assistant_response = response.json()["choices"][0]["message"]["content"]
+
         return {"response": assistant_response}
 
     except requests.RequestException as e:
-        # Log the exception to help with debugging
         print(f"RequestException: {e}")
         raise HTTPException(status_code=500, detail=f"Requestly API error: {e}")
     except Exception as e:
-        # Log any unexpected errors
         print(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail=f"Unexpected error: {e}")

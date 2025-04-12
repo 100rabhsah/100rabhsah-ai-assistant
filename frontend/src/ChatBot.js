@@ -1,19 +1,44 @@
-// src/ChatBot.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ChatBot.css";
-import ThemeToggle from "./ThemeToggle"; // Import the ThemeToggle component
+import ThemeToggle from "./ThemeToggle";
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [introText, setIntroText] = useState("");
+  const [introDone, setIntroDone] = useState(false);
+
+  const welcomeMessage =
+    "Hey there! 👋 I'm Sourabh's personal AI assistant. I’ve been trained on his thoughts, experiences, and journey. Feel free to ask anything about his professional work, personal growth, or the insights he’s shared along the way!";
+
+  useEffect(() => {
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      setIntroText((prev) => prev + welcomeMessage[index]);
+      index++;
+      if (index === welcomeMessage.length) {
+        clearInterval(typingInterval);
+        setIntroDone(true);
+        setMessages([
+          {
+            role: "assistant",
+            content: welcomeMessage,
+          },
+        ]);
+      }
+    }, 25);
+
+    return () => clearInterval(typingInterval);
+  }, []);
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
 
-    setMessages([...messages, { role: "user", content: input }]);
+    const newMessages = [...messages, { role: "user", content: input }];
+    setMessages(newMessages);
     setLoading(true);
     setInput("");
 
@@ -23,15 +48,13 @@ const ChatBot = () => {
       });
 
       setMessages([
-        ...messages,
-        { role: "user", content: input },
+        ...newMessages,
         { role: "assistant", content: response.data.response },
       ]);
     } catch (error) {
       console.error("Error fetching response:", error);
       setMessages([
-        ...messages,
-        { role: "user", content: input },
+        ...newMessages,
         { role: "assistant", content: "Sorry, something went wrong." },
       ]);
     } finally {
@@ -52,29 +75,35 @@ const ChatBot = () => {
 
   return (
     <div className={`chatbot-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      <ThemeToggle toggleTheme={toggleTheme} /> {/* Add ThemeToggle component here */}
-
+      <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <div className="chatbot-header">
-    <h1>Sourabh's AI Assistant</h1>
-    </div>
+        <h1>Sourabh's AI Assistant</h1>
+      </div>
 
       <div className="chat-box">
-        {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`message ${msg.role === "user" ? "user" : "assistant"}`}
-          >
-            {msg.content}
-          </div>
-        ))}
-        {loading && <div className="message assistant">Typing...</div>}
+        {!introDone ? (
+          <div className="message assistant">{introText}</div>
+        ) : (
+          <>
+            {messages.map((msg, idx) => (
+              <div
+                key={idx}
+                className={`message ${msg.role === "user" ? "user" : "assistant"}`}
+              >
+                {msg.content}
+              </div>
+            ))}
+            {loading && <div className="message assistant">Typing...</div>}
+          </>
+        )}
       </div>
+
       <div className="input-container">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask me something..."
+          placeholder="Ask me anything about Sourabh..."
         />
         <button onClick={handleSendMessage}>Send</button>
       </div>
