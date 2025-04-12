@@ -4,6 +4,7 @@ import requests
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables
 load_dotenv()
@@ -18,6 +19,15 @@ with open("context.json", "r") as file:
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# ✅ Add CORS middleware immediately after app init
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (okay for dev, tighten for prod)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class ChatRequest(BaseModel):
     query: str
