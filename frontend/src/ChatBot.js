@@ -64,13 +64,8 @@ const ChatBot = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
-    if (isDarkMode) {
-      document.body.classList.add("light-mode");
-      document.body.classList.remove("dark-mode");
-    } else {
-      document.body.classList.add("dark-mode");
-      document.body.classList.remove("light-mode");
-    }
+    document.body.classList.toggle("dark-mode", !isDarkMode);
+    document.body.classList.toggle("light-mode", isDarkMode);
   };
 
   return (
