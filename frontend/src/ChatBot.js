@@ -47,12 +47,14 @@ const ChatBot = () => {
         query: input,
       });
 
+      console.log("Response from API:", response.data);  // Log the response for debugging
+
       setMessages([
         ...newMessages,
         { role: "assistant", content: response.data.response },
       ]);
     } catch (error) {
-      console.error("Error fetching response:", error);
+      console.error("Error fetching response:", error.response ? error.response.data : error.message);
       setMessages([
         ...newMessages,
         { role: "assistant", content: "Sorry, something went wrong." },

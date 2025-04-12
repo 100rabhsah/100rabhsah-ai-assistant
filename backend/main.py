@@ -20,13 +20,13 @@ with open("context.json", "r") as file:
 # Initialize FastAPI app
 app = FastAPI()
 
-# Add CORS middleware for frontend access
+# Add CORS middleware with logging and broader configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://100rabhsah-ai-assistant.vercel.app/"],  # You can restrict this to frontend domain in production
+    allow_origins=["https://100rabhsah-ai-assistant.vercel.app", "http://localhost:3000"],  # Trusted origins
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all methods like POST, GET, OPTIONS
+    allow_headers=["*"],  # Allow all headers
 )
 
 class ChatRequest(BaseModel):
@@ -81,3 +81,21 @@ async def chat_endpoint(payload: ChatRequest):
     except Exception as e:
         print(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail=f"Unexpected error: {e}")
+
+# Handle OPTIONS (preflight) requests
+@app.options("/chat")
+async def options_request():
+    return {
+        "access-control-allow-origin": "https://100rabhsah-ai-assistant.vercel.app",
+        "access-control-allow-methods": "POST, OPTIONS",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-credentials": "true"
+    }
+
+# Logging Origin Header for Debugging
+@app.middleware("http")
+async def log_origin(request, call_next):
+    origin = request.headers.get("origin")
+    print(f"Received request with Origin: {origin}")  # Log incoming request's Origin header
+    response = await call_next(request)
+    return response
