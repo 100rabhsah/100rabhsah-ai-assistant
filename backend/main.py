@@ -23,7 +23,7 @@ app = FastAPI()
 # Add CORS middleware for frontend access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can restrict this to frontend domain in production
+    allow_origins=["https://100rabhsah-ai-assistant.vercel.app/"],  # You can restrict this to frontend domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
