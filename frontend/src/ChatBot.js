@@ -43,7 +43,7 @@ const ChatBot = () => {
     setInput("");
 
     try {
-      const response = await axios.post("http://localhost:8000/chat", {
+      const response = await axios.post("https://one00rabhsah-ai-assistant.onrender.com/chat", {
         query: input,
       });
 
