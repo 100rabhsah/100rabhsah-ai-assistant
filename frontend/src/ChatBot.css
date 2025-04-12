@@ -7,6 +7,27 @@ html, body, #root {
     font-family: "Segoe UI", sans-serif;
     overflow: hidden;
   }
+
+  .chatbot-header {
+    text-align: center;
+    padding: 1rem 0 0.5rem;
+    background: inherit;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .chatbot-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+  
+  @media (max-width: 600px) {
+    .chatbot-header h1 {
+      font-size: 1.25rem;
+    }
+  }
   
   .chatbot-container {
     display: flex;

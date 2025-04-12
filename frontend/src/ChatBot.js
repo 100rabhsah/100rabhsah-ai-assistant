@@ -53,6 +53,11 @@ const ChatBot = () => {
   return (
     <div className={`chatbot-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       <ThemeToggle toggleTheme={toggleTheme} /> {/* Add ThemeToggle component here */}
+
+      <div className="chatbot-header">
+    <h1>Sourabh's AI Assistant</h1>
+    </div>
+
       <div className="chat-box">
         {messages.map((msg, idx) => (
           <div
