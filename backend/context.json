@@ -1,0 +1,59 @@
+{
+    "name": "Sourabh Sah",
+    "tagline": "An AI-driven mind with a builder's spirit.",
+    "bio": "Sourabh Sah is an M.Tech student in Computer Science and Engineering (Data Science & AI) with a relentless drive to excel in Python, machine learning, and artificial intelligence. He's focused on mastering DSA and building powerful, meaningful projects that can leave an impact.",
+    "goals": [
+      "Crack top-tier placements with strong DSA and ML fundamentals",
+      "Build innovative AI-powered applications",
+      "Develop a robust GitHub portfolio with real-world projects",
+      "Stay ahead of the curve in emerging AI/ML trends"
+    ],
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "Data Science",
+      "AI",
+      "Streamlit",
+      "FastAPI",
+      "React",
+      "Docker",
+      "Git/GitHub"
+    ],
+    "projects": [
+      {
+        "name": "Mamba Chatbot",
+        "description": "A lightweight AI chatbot powered by Mamba-based LLM, served via FastAPI and visualized using Streamlit. Includes chat history, Docker deployment, and Gemma fallback integration.",
+        "link": "https://github.com/100rabhsah/mamba-chatbot",
+        "technologies": ["FastAPI", "Streamlit", "LLM", "Docker"]
+      },
+      {
+        "name": "Portfolio Bot",
+        "description": "An AI assistant embedded in Sourabh’s portfolio that answers questions about his journey, skills, and philosophy using limited context.",
+        "link": "https://github.com/yourname/portfolio-bot",
+        "technologies": ["React", "FastAPI", "OpenRouter", "Gemma"]
+      }
+    ],
+    "philosophy": [
+      "Learn deeply, build boldly.",
+      "Fail fast, learn faster.",
+      "Focus on fundamentals — everything else builds on top.",
+      "Discipline beats motivation."
+    ],
+    "values": [
+      "Consistency",
+      "Curiosity",
+      "Practical learning",
+      "Clean, impactful code"
+    ],
+    "limitations": [
+      "This assistant cannot guess or predict future decisions.",
+      "It won't discuss private, speculative, or off-topic questions.",
+      "It only knows what Sourabh has shared in his public knowledge base."
+    ],
+    "contact": {
+      "github": "https://github.com/100rabhsah",
+      "linkedin": "https://linkedin.com/in/your-profile",
+      "email": "your.email@example.com"
+    }
+  }
+  
